@@ -6,20 +6,19 @@ class ejercicio1:
     def __init__(self, a):
         self.num1 = a
         
-    'Declaracion de propiedades de métodso'
-    'Si la funcuion esta dentro de la clase poner self'
+    'Declaracion de propiedades de métodos'
+    'Si la función está dentro de la clase poner self'
     def piramide(self):
-
-        while self.num1 > 0:
-            print(self.num1)
-            self.num1 -= 1
-        
+        i = 1  
+        while i <= self.num1:
+            print('*' * i)
+            i += 1            
 
 'No forma parte de la clase'
 def main():
     obj = ejercicio1(int(input("Dame un número: ")))
 
-    'referencia a la operacopm'
+    'referencia a la operación'
     obj.piramide()
 
 if __name__ == "__main__":
