@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+{%import "_macros.html" as macro%}
+
+
+<h1>Calcular distancia</h1>
+
+    <form action="" method = "POST">
+        {{macro.render_field(forms.x1)}}
+        {{macro.render_field(forms.x2)}}
+        {{macro.render_field(forms.y1)}}
+        {{macro.render_field(forms.y2)}}
+        <input type = "submit" name="btn1">
+
+        <h1>Distancia: {{dis}}</h1>
+    </form>
+
+    
+{% endblock %}
+
