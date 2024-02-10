@@ -1,35 +1,41 @@
 {% extends 'layout.html' %}
 
-{%block content %}
-
-<form action = "/resultado" method = "POST">
-    <label> N1: </label>
-    <input type="text" name="n1"/><br>
-    <label> N2: </label>
-    <input type="text" name="n2"/><br>
-
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="operaciones" value="suma" id="suma" >
-        <label class="form-check-label" for="suma">
-            Suma
-        </label>
-    
-        <input class="form-check-input" type="radio" name="operaciones" value="resta" id="resta">
-        <label class="form-check-label" for="resta">
-            Resta
-        </label>
-
-        <input class="form-check-input" type="radio" name="operaciones" value="multiplicacion" id="multiplicacion">
-        <label class="form-check-label" for="multiplicacion">
-            Multiplicacion
-        </label>
-
-        <input class="form-check-input" type="radio" name="operaciones" value="divicion" id="divicion">
-        <label class="form-check-label" for="divicion">
-            Divicion
-        </label>
+{% block content %}
+<form action="/resultado" method="POST">
+    <div class="mb-3">
+        <label for="n1" class="form-label">N1:</label>
+        <input type="text" class="form-control" id="n1" name="n1">
     </div>
-    <input type="submit"/>
+    <div class="mb-3">
+        <label for="n2" class="form-label">N2:</label>
+        <input type="text" class="form-control" id="n2" name="n2">
+    </div>
+    <div class="mb-3">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="operaciones" value="suma" id="suma">
+            <label class="form-check-label" for="suma">
+                Suma
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="operaciones" value="resta" id="resta">
+            <label class="form-check-label" for="resta">
+                Resta
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="operaciones" value="multiplicacion" id="multiplicacion">
+            <label class="form-check-label" for="multiplicacion">
+                Multiplicacion
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="operaciones" value="division" id="division">
+            <label class="form-check-label" for="division">
+                Division
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
-
 {% endblock %}

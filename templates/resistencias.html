@@ -1,0 +1,50 @@
+
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+{%import "_macros.html" as macro%}
+
+
+<h1>Calcular ohms de resistencias</h1>
+
+    <form action="" method = "POST">
+        {{macro.render_field(forms.banda1)}}
+        {{macro.render_field(forms.banda2)}}
+        {{macro.render_field(forms.banda3)}}
+        {{macro.render_field(forms.tolerancia)}}
+
+        <input type = "submit" name="btn1">
+
+        <table class="table table-bordered table-sm">
+            <thead>
+            <tr>
+                <th>Color 1</th>
+                <th>Color 2</th>
+                <th>Color 3</th>
+                <th>Tolerancia</th>
+                <th>Valor</th>
+                <th>Valor máximo</th>
+                <th>Valor mínimo</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="background-color: {{ color(band1[0]) }}">{{ band1[1] }}</td>
+                <td style="background-color: {{ color(band2[0]) }}">{{ band2[1] }}</td>
+                <td style="background-color: {{ color(band3[0]) }}">{{ band3[1] }}</td>
+                <td style="background-color: {{ colort }}">{{ to }}</td>
+                <td>{{ r }}</td>
+                <td>{{ rmax }}</td>
+                <td>{{ rmin }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+    
+{% endblock %}
+
+
+
