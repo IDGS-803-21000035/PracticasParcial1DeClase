@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import forms
 from math import sqrt
+from io import open
 
 app = Flask(__name__)
 
@@ -136,6 +137,68 @@ def resistencia():
             colort = '#BEBEBE'
 
     return render_template("resistencias.html", forms=dist_form, r=r, rmax=rmax, rmin=rmin, band1=band1, band2=band2, band3=band3, to=to, color=color, colort=colort)
+
+
+@app.route("/diccionario",  methods=["GET", "POST"])
+def diccionario():
+    dicc_form = forms.DiccForm(request.form)
+    busc_form = forms.BuscForm(request.form)
+    ingles = ""
+    espaniol = ""
+    buscar = ""
+    res = ""
+    mensaje = ""
+    
+    if request.method == 'POST':
+        
+
+        if 'btnGuardar' in request.form and dicc_form.validate():
+            ingles = dicc_form.ingles.data
+            espaniol = dicc_form.espaniol.data
+
+            archivo_dicc = open('diccionario.txt', 'a')
+            archivo_dicc.write("\n"+ingles+": "+espaniol)
+            archivo_dicc.close()
+            mensaje = "Palabra registrada"
+
+            
+
+            return render_template("diccionarioEsIn.html", dicc_form=dicc_form, busc_form=busc_form, mensaje = mensaje)
+        
+        elif 'btnBuscar' in  request.form and busc_form.validate():
+            buscar = busc_form.buscar.data
+            idioma = busc_form.idioma.data
+
+            if idioma == '1':
+                res = traducir(buscar.upper(), idioma)
+            else:
+                res = traducir(buscar.upper(), idioma)
+
+                
+
+
+    return render_template("diccionarioEsIn.html", dicc_form=dicc_form, busc_form=busc_form, res=res)
+
+
+def traducir(palabra, idioma):
+    archivo_dicc = open('diccionario.txt', 'r')
+    #archivo_dicc.seek(0)
+    archivo_dicc.readline() 
+    for line in archivo_dicc:
+        ing, esp = line.split(':')
+        ing = ing.strip().upper()
+        esp = esp.strip().upper() #Stip() elimina los espacios --- palabra ---
+        if idioma == '1':
+            if ing == palabra:
+                archivo_dicc.close()
+                return esp
+        else:
+            if esp == palabra:
+                archivo_dicc.close()
+                return ing
+    archivo_dicc.close()
+    return "no se encuentra esta palabra"
+
 
 if __name__ == "__main__":
     app.run(debug=True)

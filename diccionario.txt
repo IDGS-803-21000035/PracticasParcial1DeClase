@@ -1,0 +1,10 @@
+
+blue: azul
+red: rojo
+dog: perro
+ice: hielo
+hello: hola
+good: bueno
+tv: television
+bag: bolsa
+shoes: zapato

@@ -1,11 +1,16 @@
+
 from wtforms import Form
 from wtforms import StringField, SelectField, RadioField, EmailField, IntegerField
+#esta clase sirve para las validaciones 
+from wtforms import validators
 
 class UserForm(Form):
     x1 = IntegerField('x1')
     x2 = IntegerField('x2')
     y1 = IntegerField('y1')
     y2 = IntegerField('y2')
+
+# -------------------- RESISTENCIAS ---------------------------
     
 #bandas = [{'nombre1', 'Nombre 1'}, {'nombre2', 'Nombre 2'}, {'nombre3', 'Nombre 3'}]
     bandas = [('0', 'Negro',), ('1', 'Cafe'), ('2', 'Rojo'), ('3', 'Naranja'), ('4', 'Amarillo'),
@@ -20,4 +25,22 @@ class UserForm(Form):
     banda3 = SelectField('banda3', choices=bandast)
     tolerancia = RadioField('tolerancia', choices=tolerancias)
 
+# ------------------------- DICCIONARIO -----------------------
+class DiccForm(Form):
+    ingles = StringField('Ingles', [
+        validators.DataRequired(message='El campo es requerido'),
+        validators.length(min=2, max=20, message='Ingresa una palabra valido')
+    ])
+    espaniol = StringField('Español', [
+        validators.DataRequired(message='El campo es requerido'),
+        validators.length(min=2, max=20, message='Ingresa una palabra valido')
+    ])
+
+class BuscForm(Form):
+    idiomas = [('0', 'Ingles'), ('1', 'Español')]
+    idioma = RadioField('Selecciona el idioma: ', choices=idiomas)
+
+    buscar = StringField('Palabra a buscar', [
+        validators.DataRequired(message='El campo es requerido')
+    ])
     

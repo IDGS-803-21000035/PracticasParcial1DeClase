@@ -1,0 +1,46 @@
+
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{%import "_macros.html" as macro%}
+
+<h1>Diccionario Ingles - Español </h1>
+<div class="container">
+    <br><br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="alert alert-success">
+                <h1 id="text"> {{mensaje}} </h1>
+           </div>
+            <div class="contenedor">
+                <h2>Registrar vocabulario </h2>
+                    <form action="" method = "POST" novalidate>
+                        {{macro.render_field(dicc_form.ingles, id="ing", class="form-control")}}
+                        {{macro.render_field(dicc_form.espaniol, id="esp", class="form-control")}}
+                        <input type = "submit" name="btnGuardar" value="Guardar palabra" class="btn btn-primary">
+                       
+                    </form>
+            </div>
+        </div>
+   
+        <div class="col-md-6">
+            <div class="contenedor">
+                <form action="" method = "POST" novalidate>
+                    <h2> Traducir </h2>
+                    {{macro.render_field(busc_form.idioma,  class="form-group")}}
+
+                    {{ macro.render_field(busc_form.buscar, id="buscar", class="form-control") }}
+                    <h3>{{res}}</h3>
+                    <input type = "submit" name="btnBuscar" value="Traducir" class="btn btn-primary">
+                   
+                </form>
+            </div>
+        </div>
+    </div>       
+</div>
+    
+{% endblock %}
+
+
+
